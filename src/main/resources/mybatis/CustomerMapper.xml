@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hand.dao.CustomerDao">
+
+	<resultMap type="com.hand.entity.Customer" id="CustomerMap">
+		<id column="customer_id" jdbcType="INTEGER" property="customer_id" />
+		<result column="store_id" jdbcType="INTEGER" property="store_id" />
+		<result column="first_name" jdbcType="VARCHAR" property="first_name" />
+		<result column="last_name" jdbcType="VARCHAR" property="last_name" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="address_id" jdbcType="INTEGER" property="address_id" />
+		<result column="active" jdbcType="INTEGER" property="active" />
+		<result column="create_date" jdbcType="DATE" property="create_date" />
+		<result column="last_update" jdbcType="DATE" property="last_update" />
+	</resultMap>
+
+	<select id="checkCustomer" parameterType="String"
+		resultMap="CustomerMap">
+		select * from customer where first_name = #{first_name}
+	</select>
+	
+	<select id="selectAll" resultMap="CustomerMap">
+		select first_name,last_name,address_id,email,customer_id,last_update from customer
+	</select>
+
+</mapper> 
